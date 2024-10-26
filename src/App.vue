@@ -2,9 +2,6 @@
 import Job from './components/Job.vue';
 import Add_job from './components/Add_job.vue';
 import localStorWork from './assets/utils/localStorWork';
-
-// import { compile } from 'vue';
-
 </script>
 
 <script>
