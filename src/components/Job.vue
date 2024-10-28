@@ -76,10 +76,10 @@ export default {
 				{{ job }}
 			</p>
 			<div class="btn_move_block">
-				<button @click="move_up" aria-label="up_job">
+				<button @click="move_up" aria-label="up_job" class="move_btn">
 					<Arrow_up />
 				</button>
-				<button @click="move_down" aria-label="down_job">
+				<button @click="move_down" aria-label="down_job" class="move_btn">
 					<Arrow_down />
 				</button>
 			</div>
@@ -88,10 +88,10 @@ export default {
 		<template v-else class="job_text">
 			<textarea v-model="newJob" class="job_text" :class="fin" ref="ta" @input="ta_auto_height"></textarea>
 			<div class="btn_move_block">
-				<button @click="move_up" aria-label="up_job">
+				<button @click="move_up" aria-label="up_job" class="move_btn">
 					<Arrow_up />
 				</button>
-				<button @click="move_down" aria-label="down_job">
+				<button @click="move_down" aria-label="down_job" class="move_btn">
 					<Arrow_down />
 				</button>
 			</div>
@@ -152,6 +152,10 @@ export default {
 		width: fit-content;
 		text-align: center;
 		margin: 0 auto;
+	}
+	.move_btn {
+		min-height: 24px;
+		min-width: 24px;
 	}
 
 	.job_complite {
