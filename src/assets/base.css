@@ -63,10 +63,8 @@ html{
 }
 
 body {
-  min-height: 100vh;
-  /* color: var(--color-text); */
+  min-height: 90vh;
   color: black;
-  /* background: var(--color-background); */
   background: white;
   transition:
     color 0.5s,
