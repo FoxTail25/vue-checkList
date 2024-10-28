@@ -76,16 +76,24 @@ export default {
 				{{ job }}
 			</p>
 			<div class="btn_move_block">
-				<button @click="move_up"><Arrow_up/></button>
-				<button @click="move_down"><Arrow_down/></button>
+				<button @click="move_up" aria-label="up_job">
+					<Arrow_up />
+				</button>
+				<button @click="move_down" aria-label="down_job">
+					<Arrow_down />
+				</button>
 			</div>
 			<button @click="change_isEdit" class="change">Изменить задачу</button>
 		</template>
 		<template v-else class="job_text">
 			<textarea v-model="newJob" class="job_text" :class="fin" ref="ta" @input="ta_auto_height"></textarea>
 			<div class="btn_move_block">
-				<button @click="move_up"><Arrow_up/></button>
-				<button @click="move_down"><Arrow_down/></button>
+				<button @click="move_up" aria-label="up_job">
+					<Arrow_up />
+				</button>
+				<button @click="move_down" aria-label="down_job">
+					<Arrow_down />
+				</button>
 			</div>
 			<button @click="save_change_in_job" class="save">Сохранить изменения</button>
 		</template>
