@@ -1,4 +1,9 @@
+<script setup>
+import Arrow_up from './icon/arrow_up.vue';
+import Arrow_down from './icon/arrow_down.vue';
 
+
+</script>
 
 <script>
 
@@ -8,7 +13,7 @@ export default {
 		job: String,
 		completed: Boolean,
 	},
-	emits: ['change_job', 'remove_job'],
+	emits: ['change_job', 'remove_job', 'move_job'],
 	data() {
 		return {
 			isEdit: false,
@@ -35,7 +40,13 @@ export default {
 			const ta = this.$refs.ta
 			ta.style.height = '1em';
 			ta.style.height = ta.scrollHeight + 2 + 'px';
-		}
+		},
+		move_up:function(){
+			this.$emit('move_job', this.id, 'up')
+		},
+		move_down:function(){
+			this.$emit('move_job', this.id, 'down')
+		},
 	},
 	computed: {
 		fin: function () {
@@ -64,10 +75,18 @@ export default {
 			<p class="job_text" :class="fin">
 				{{ job }}
 			</p>
+			<div class="btn_move_block">
+				<button @click="move_up"><Arrow_up/></button>
+				<button @click="move_down"><Arrow_down/></button>
+			</div>
 			<button @click="change_isEdit" class="change">Изменить задачу</button>
 		</template>
 		<template v-else class="job_text">
 			<textarea v-model="newJob" class="job_text" :class="fin" ref="ta" @input="ta_auto_height"></textarea>
+			<div class="btn_move_block">
+				<button @click="move_up"><Arrow_up/></button>
+				<button @click="move_down"><Arrow_down/></button>
+			</div>
 			<button @click="save_change_in_job" class="save">Сохранить изменения</button>
 		</template>
 		<button class="job_remove delete" @click="remove_job">Удалить задачу</button>
@@ -112,6 +131,10 @@ export default {
 		@media (max-width:600px) {
 			grid-column: 1/4;
 		}
+	}
+	.btn_move_block {
+		grid-row: 2/ 3;
+		grid-column: 2/ 3;
 	}
 
 	.change,
