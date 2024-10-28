@@ -61,7 +61,8 @@ export default {
         if(ind > 0) {
           const temp = this.job_list[ind]
           this.job_list[ind] = {...this.job_list[ind-1]}
-          this.job_list[ind-1] = {...temp}
+          this.job_list[ind-1] = {...temp};
+          localStorWork.save(this.job_list)
         } else {
           console.log('выше некуда')
         }
@@ -69,7 +70,8 @@ export default {
         if(ind < this.job_list.length-1) {
           const temp = this.job_list[ind]
           this.job_list[ind] = {...this.job_list[ind+1]}
-          this.job_list[ind+1] = {...temp}
+          this.job_list[ind+1] = {...temp};
+          localStorWork.save(this.job_list)
         } else {
           console.log('ниже некуда')
         }
@@ -79,7 +81,7 @@ export default {
     },
     
   },
-  mounted() {
+  beforeMount() {
     //  сработывает сразу после отрисовки компонента.
     const localStorData = localStorWork.check()
     if (localStorData !== null) {
@@ -93,31 +95,21 @@ export default {
 
 
 <template>
-  
+
   <header>
     <h1>
       Список задач
     </h1>
   </header>
 
-  <transition-group name="list" tag="p">
+  <transition-group name="list-complete" tag="p">
 
-    <Job 
-    v-for="job_item in job_list"
-    :id="job_item.id"
-    :job="job_item.job"
-    :completed="job_item.completed"
-    :key="job_item.id"
-    @change_job="change_job"
-    @remove_job="remove_job"
-    @move_job="move_job"
-    class="list-item"
-    />
+    <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
+      :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
+      class="list-complete-item" />
 
   </transition-group>
-<Add_job
-@add_job="add_job"
-/>
+  <Add_job @add_job="add_job" />
 
 </template>
 
@@ -127,13 +119,19 @@ header {
   text-align: center;
 }
 
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s ease;
+.list-complete-item {
+  transition: all 0.8s ease;
+  display: inline-block;
+  margin-right: 10px;
 }
-.list-enter-from,
-.list-leave-to {
+
+.list-complete-enter-from,
+.list-complete-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.list-complete-leave-active {
+  position: absolute;
 }
 </style>
