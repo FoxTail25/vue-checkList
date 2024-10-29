@@ -102,13 +102,13 @@ export default {
     </h1>
   </header>
 
-  <transition-group name="list-complete" tag="p">
+  <!-- <transition-group name="list-complete" tag="p"> -->
 
     <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
       :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
-      class="list-complete-item" />
+       />
 
-  </transition-group>
+  <!-- </transition-group> -->
   <Add_job @add_job="add_job" />
 
 </template>

@@ -119,6 +119,7 @@ export default {
 	}
 	.job_finish {
 		text-align: center;
+		grid-column: 1/2;
 		@media (max-width:600px) {
 				/* grid-template-columns: 80px auto auto; */
 				grid-row: 2/3;
