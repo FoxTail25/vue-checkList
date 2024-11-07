@@ -115,14 +115,14 @@ export default {
 	border-radius: 7px;
 	
 	@media (max-width:600px) {
-		grid-template-columns: 80px auto auto;
+		grid-template-columns: 80px auto auto auto;
 	}
 	.job_finish {
 		text-align: center;
 		grid-column: 1/2;
 		@media (max-width:600px) {
 				/* grid-template-columns: 80px auto auto; */
-				grid-row: 2/3;
+				grid-row: 2/4;
 			}
 	}
 
@@ -138,12 +138,16 @@ export default {
 		resize: none;
 
 		@media (max-width:600px) {
-			grid-column: 1/4;
+			grid-column: 1/5;
 		}
 	}
 	.btn_move_block {
 		grid-row: 2/ 3;
 		grid-column: 2/ 3;
+
+		@media (max-width:600px) {
+				grid-column: 2/3;
+			}
 	}
 
 	.change,
@@ -153,6 +157,9 @@ export default {
 		width: fit-content;
 		text-align: center;
 		margin: 0 auto;
+		@media (max-width:600px) {
+				grid-column: 3/4;
+			}
 	}
 	.move_btn {
 		min-height: 24px;
@@ -174,7 +181,7 @@ export default {
 	.delete {
 		background-color: rgb(255, 232, 232);
 		@media (max-width:600px) {
-				grid-column: 3/4;
+				grid-column: 4/5;
 				width: fit-content;
 				justify-self: flex-end;
 			}

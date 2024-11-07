@@ -102,13 +102,10 @@ export default {
     </h1>
   </header>
 
-  <transition-group name="list-complete" tag="div">
+  <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
+    :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
+      />
 
-    <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
-      :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
-       />
-
-  </transition-group>
   <Add_job @add_job="add_job" />
 
 </template>
@@ -119,18 +116,5 @@ header {
   text-align: center;
 }
 
-.list-complete-item {
-  transition: all 0.8s ease;
-  display: grid;
-}
 
-.list-complete-enter-from,
-.list-complete-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.list-complete-leave-active {
-  position: absolute;
-}
 </style>
