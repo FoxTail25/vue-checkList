@@ -66,9 +66,9 @@ body {
   min-height: 90vh;
   color: black;
   background: white;
-  transition:
+  /* transition:
     color 0.5s,
-    background-color 0.5s;
+    background-color 0.5s; */
   line-height: 1.6;
 
   font-size: 15px;

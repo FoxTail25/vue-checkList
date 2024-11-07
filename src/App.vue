@@ -102,7 +102,7 @@ export default {
     </h1>
   </header>
 
-  <transition-group name="list-complete" tag="p">
+  <transition-group name="list-complete" tag="div">
 
     <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
       :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
@@ -121,8 +121,8 @@ header {
 
 .list-complete-item {
   transition: all 0.8s ease;
-  display: inline-block;
-  margin-right: 10px;
+  display: grid;
+  /* margin-right: 10px; */
 }
 
 .list-complete-enter-from,
