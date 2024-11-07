@@ -106,7 +106,7 @@ export default {
 
     <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
       :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
-      class="list-complete-item" />
+       />
 
   </transition-group>
   <Add_job @add_job="add_job" />
@@ -122,7 +122,6 @@ header {
 .list-complete-item {
   transition: all 0.8s ease;
   display: grid;
-  /* margin-right: 10px; */
 }
 
 .list-complete-enter-from,
