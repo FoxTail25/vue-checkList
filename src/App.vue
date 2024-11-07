@@ -103,7 +103,7 @@ export default {
   </header>
 
 
-  <transition-group name="list-complete" tag="p">
+  <transition-group name="list-complete" tag="div">
 
     <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
       :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
@@ -131,10 +131,10 @@ header {
 .list-complete-enter-from,
 .list-complete-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(100px);
 }
 
 .list-complete-leave-active {
-  /* position: absolute; */
+  position: absolute;
 }
 </style>
