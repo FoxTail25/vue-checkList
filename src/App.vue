@@ -11,7 +11,7 @@ export default {
       job_list: [
         {
           id: 1,
-          job: 'Задача_1', 
+          job: 'Задача_1',
           completed: false
         },
         {
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     add_job: function (job) {
-      if(job.length >= 1) {
+      if (job.length >= 1) {
 
         const id = this.job_list.length + 1;
         this.job_list.push({
@@ -39,10 +39,10 @@ export default {
       }
       localStorWork.save(this.job_list)
     },
-    change_job: function (id, job, completed = false ) {
+    change_job: function (id, job, completed = false) {
       // console.log(id, job, completed)
       this.job_list = this.job_list.map(el => {
-        if(el.id === id) {
+        if (el.id === id) {
           el.job = job;
           el.completed = completed;
         }
@@ -50,27 +50,27 @@ export default {
       })
       localStorWork.save(this.job_list)
     },
-    remove_job: function(id) {
+    remove_job: function (id) {
       this.job_list = this.job_list.filter(el => el.id != id);
       localStorWork.save(this.job_list)
     },
-    move_job: function(id, direction = 'up'){
+    move_job: function (id, direction = 'up') {
       // console.log('id', id,'direct', direction)
       const ind = this.job_list.findIndex(el => el.id == id)
-      if(direction === 'up') {
-        if(ind > 0) {
+      if (direction === 'up') {
+        if (ind > 0) {
           const temp = this.job_list[ind]
-          this.job_list[ind] = {...this.job_list[ind-1]}
-          this.job_list[ind-1] = {...temp};
+          this.job_list[ind] = { ...this.job_list[ind - 1] }
+          this.job_list[ind - 1] = { ...temp };
           localStorWork.save(this.job_list)
         } else {
           console.log('выше некуда')
         }
-      } else if(direction === 'down') {
-        if(ind < this.job_list.length-1) {
+      } else if (direction === 'down') {
+        if (ind < this.job_list.length - 1) {
           const temp = this.job_list[ind]
-          this.job_list[ind] = {...this.job_list[ind+1]}
-          this.job_list[ind+1] = {...temp};
+          this.job_list[ind] = { ...this.job_list[ind + 1] }
+          this.job_list[ind + 1] = { ...temp };
           localStorWork.save(this.job_list)
         } else {
           console.log('ниже некуда')
@@ -79,7 +79,7 @@ export default {
         console.log('направление не указанно')
       }
     },
-    
+
   },
   beforeMount() {
     //  сработывает сразу после отрисовки компонента.
@@ -102,30 +102,35 @@ export default {
     </h1>
   </header>
 
+  <main>
 
-  <transition-group name="list-complete" tag="div">
+    <transition-group name="list-complete" tag="div">
 
-    <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
-      :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
-      class="list-complete-item" />
+      <Job v-for="job_item in job_list" :id="job_item.id" :job="job_item.job" :completed="job_item.completed"
+        :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
+        class="list-complete-item" />
 
-  </transition-group>
+    </transition-group>
 
 
-  <Add_job @add_job="add_job" />
+    <Add_job @add_job="add_job" />
+
+  </main>
+
+  <footer>
+    <h2>
+      Developed by FoxTail25
+    </h2>
+  </footer>
 
 </template>
 
 <style scoped>
 
-header {
-  margin-top: 10px;
-  text-align: center;
-}
+
 .list-complete-item {
   transition: all 0.3s ease;
   display: grid;
-  /* margin-right: 40px; */
 }
 
 .list-complete-enter-from,
@@ -136,5 +141,44 @@ header {
 
 .list-complete-leave-active {
   position: absolute;
+}
+
+main {
+  padding: 20px;
+  padding-top: 40px;
+  @media (max-width: 400px) {
+    padding: 5px;
+    padding-top: 40px;
+  }
+}
+
+header, footer {
+  background: rgba(255, 255, 255, 0.192);
+  backdrop-filter: blur(2px);
+  height: auto;
+  width: 100% ;
+  border-radius: 7px;
+  border: 1px solid rgba(43, 43, 43, 0.568);
+  position: fixed;
+  text-align: center;
+
+  padding: 0px;
+
+}
+
+header {
+  top: 1px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  bottom: 1px;
+  h3 {
+    color: red;
+  }
+  
 }
 </style>
