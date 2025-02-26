@@ -2,12 +2,14 @@
 import Job from './components/Job.vue';
 import Add_job from './components/Add_job.vue';
 import localStorWork from './assets/utils/localStorWork';
+import { v4 as uuidv4 } from 'uuid';
 </script>
 
 <script>
 export default {
   data() {
     return {
+     
       job_list: [
         {
           id: 1,
@@ -30,8 +32,7 @@ export default {
   methods: {
     add_job: function (job) {
       if (job.length >= 1) {
-
-        const id = this.job_list.length + 1;
+        const id = uuidv4();
         this.job_list.push({
           id: id,
           job: job,
@@ -40,7 +41,6 @@ export default {
       localStorWork.save(this.job_list)
     },
     change_job: function (id, job, completed = false) {
-      // console.log(id, job, completed)
       this.job_list = this.job_list.map(el => {
         if (el.id === id) {
           el.job = job;
@@ -110,16 +110,17 @@ export default {
         :key="job_item.id" @change_job="change_job" @remove_job="remove_job" @move_job="move_job"
         class="list-complete-item" />
 
-    </transition-group>
-
-
-    <Add_job @add_job="add_job" />
+        
+        
+        <Add_job @add_job="add_job" class="list-complete-item"/>
+      </transition-group>
 
   </main>
 
   <footer>
     <h2>
-      Developed by FoxTail25
+      
+      Developed by: <a href="https://github.com/FoxTail25" target="_blank">FoxTail25 </a>
     </h2>
   </footer>
 
@@ -140,12 +141,13 @@ export default {
 }
 
 .list-complete-leave-active {
-  position: absolute;
+  /* position: absolute; */
 }
 
 main {
   padding: 20px;
   padding-top: 40px;
+  overflow: hidden;
   @media (max-width: 400px) {
     padding: 5px;
     padding-top: 40px;
@@ -160,6 +162,7 @@ header, footer {
   border-radius: 7px;
   border: 1px solid rgba(43, 43, 43, 0.568);
   position: fixed;
+  left: 0;
   text-align: center;
   margin: 0 auto;
 
